@@ -1,43 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css" />
     <title>Term paper in JavaScript</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- <h1>Погода з допомогою <mark>Java Script</mark></h1> -->
     <div class="wrapper">
-        <div class="search__block">
-            <form action="" id="formCity">
-                <label for="inputCity">Виберіть місто для погоди</label>
-                <input class="inputCity" type="text" />
-                <button class="btnSearch" type="submit">Пошук</button>
-            </form>
-            <p class="title__city"><span>Погода в </span>Рівне</p>
-        </div>
+      <div class="search__block">
+        <form action="" id="formCity">
+          <label for="inputCity">Виберіть місто для погоди</label>
+          <input class="inputCity" type="text" />
+          <span class="inputValid">Невірно введено місто</span>
+          <button class="btnSearch" type="submit">Пошук</button>
+        </form>
+        <p class="title__city"></p>
+      </div>
 
+      <table class="table_list">
+        <thead class="header__table">
+          <tr class="table__title">
+            <th></th>
+            <td class="" colspan="2">ніч</td>
+            <td class="" colspan="2">ранок</td>
+            <td class="" colspan="2">день</td>
+            <td class="noB" colspan="2">вечір</td>
+          </tr>
+        </thead>
 
-        <table class="table_list">
-        
-            <thead class="header__table">
-                <tr class="table__title">
-                    <th> </th>
-                    <td class="" colspan="2">ніч</td>
-                    <td class="" colspan="2">ранок</td>
-                    <td class="" colspan="2">день</td>
-                    <td class="noB" colspan="2">вечір</td>
-                </tr>
-            </thead>
-        
-            <tbody class="body__table">
-                <tr class="tr__title">
-                    <th>Години :</th>
-                    <!-- <td>00:00</td>
+        <tbody class="body__table">
+          <tr class="tr__title">
+            <th>Години :</th>
+            <!-- <td>00:00</td>
                     <td>03:00</td>
                     <td>06:00</td>
                     <td>09:00</td>
@@ -45,97 +43,93 @@
                     <td>15:00</td>
                     <td>18:00</td>
                     <td>21:00</td> -->
-                </tr>
-                    <tr class="temp">
-                        <th>Температура :</th>
-                        <!-- <td>12</td>
+          </tr>
+          <tr class="temp">
+            <th>Температура :</th>
+            <!-- <td>12</td>
                         <td>44</td>
                         <td>43</td>
                         <td>12</td>
                         <td>76</td> -->
-                    </tr>
-                <tr class="temp__min">
-                    <th>МІН :</th>
-                    <!-- <td>12</td>
+          </tr>
+          <tr class="temp__min">
+            <th>МІН :</th>
+            <!-- <td>12</td>
                     <td>44</td>
                     <td>43</td>
                     <td>12</td>
                     <td>76</td> -->
-                </tr>
-                <tr class="temp__max">
-                    <th>МАКС :</th>
-                    <!-- <td>23</td>
+          </tr>
+          <tr class="temp__max">
+            <th>МАКС :</th>
+            <!-- <td>23</td>
                     <td>123</td>
                     <td>43</td>
                     <td>12</td>
                     <td>23</td> -->
-                </tr>
-                <tr class="feels__like">
-                    <th>Відчувається як :</th>
-                    <!-- <td>23</td>
+          </tr>
+          <tr class="feels__like">
+            <th>Відчувається як :</th>
+            <!-- <td>23</td>
                     <td>123</td>
                     <td>43</td>
                     <td>12</td>
                     <td>23</td> -->
-                </tr>
-                <tr class="humidity">
-                    <th>Вологість: </th>
-                    <!-- <td>23</td>
+          </tr>
+          <tr class="humidity">
+            <th>Вологість:</th>
+            <!-- <td>23</td>
                     <td>123</td>
                     <td>43</td>
                     <td>12</td>
                     <td>23</td> -->
-                </tr>
-                <tr class="gust__wind">
-                    <th>Порив вітру :</th>
-                    <!-- <td>23</td>
+          </tr>
+          <tr class="gust__wind">
+            <th>Порив вітру :</th>
+            <!-- <td>23</td>
                     <td>123</td>
                     <td>43</td>
                     <td>12</td>
                     <td>23</td> -->
-                </tr>
-                <tr class="speed__wind">
-                    <th>Швидкість вітру :</th>
-                    <!-- <td>23</td>
+          </tr>
+          <tr class="speed__wind">
+            <th>Швидкість вітру :</th>
+            <!-- <td>23</td>
                     <td>123</td>
                     <td>43</td>
                     <td>12</td>
                     <td>23</td> -->
-                </tr>
-                <tr class="pressure">
-                    <th>Тиск в повітрі :</th>
-                    <!-- <td>23</td>
+          </tr>
+          <tr class="pressure">
+            <th>Тиск в повітрі :</th>
+            <!-- <td>23</td>
                     <td>123</td>
                     <td>43</td>
                     <td>12</td>
                     <td>23</td> -->
-                </tr>
-            </tbody>
+          </tr>
+        </tbody>
+      </table>
 
-        </table>
-
-            <div class="weather__block">
-                <ul class="list__city">
-                    <li><span>Погода : </span> легкий дощ
-                        <img src='./img/icon.jpg' alt="icon">
-                    </li>
-                    <li><span>Дата погоди: </span> 2023-04-13 18:00:00</li>
-                    <li><span>Вологість : </span> 88 % </li>
-                    <li><span>Відчувається як : </span> 12.57 °C </li>
-                    <li><span>Максимальна температура повітря : </span> 12.92 °C </li>
-                    <li><span>Мінімальна температура повітря : </span> 9.39 °C </li>
-                    <li><span>Тиск в повітрі : </span> 1009 Па</li>
-                    <li><span>Тиск на рівня моря : </span> 1009 мм рт. </li>
-                    <li><span>Порив вітру : </span> 4 км </li>
-                    <li><span>Швидкість вітру : </span> 2.68 км </li>
-                </ul>
-            </div>
-
+      <div class="weather__block">
+        <ul class="list__city">
+          <li>
+            <span>Погода : </span> легкий дощ
+            <img src="./img/icon.jpg" alt="icon" />
+          </li>
+          <li><span>Дата погоди: </span> 2023-04-13 18:00:00</li>
+          <li><span>Вологість : </span> 88 %</li>
+          <li><span>Відчувається як : </span> 12.57 °C</li>
+          <li><span>Максимальна температура повітря : </span> 12.92 °C</li>
+          <li><span>Мінімальна температура повітря : </span> 9.39 °C</li>
+          <li><span>Тиск в повітрі : </span> 1009 Па</li>
+          <li><span>Тиск на рівня моря : </span> 1009 мм рт.</li>
+          <li><span>Порив вітру : </span> 4 км</li>
+          <li><span>Швидкість вітру : </span> 2.68 км</li>
+        </ul>
+      </div>
     </div>
 
-   
-
     <script src="./script/script.js" type="module"></script>
-</body>
-
+  </body>
 </html>

@@ -1,5 +1,6 @@
 "use strict"
 
+const inputValid = document.querySelector(".inputValid") // inputValid
 const btnSearch = document.querySelector(".btnSearch") // кнопка пошуку міста
 const list__city = document.querySelector(".list__city") // список погоди
 const title__city = document.querySelector(".title__city") // h1 
@@ -45,14 +46,24 @@ formCity.addEventListener("submit", (event) => {
 
 async function fetchWeather(url){
     const res = await fetch(url);
+    inputValid.style.display = "none";
+    if (res.status === 404) { // валідатор помилки 404
+        console.log('помилка');
+        inputValid.style.display = "block";
+    }
+    
     console.log(res);
     data = await res.json();
     console.log('data: ', data);
-    
+
     startList();
 }
 
 function startList() {
+
+
+
+
     const cityList = data["list"];
     console.log('rivne: ', cityList);
     const dataCity1 = cityList[0];
@@ -61,7 +72,7 @@ function startList() {
     console.log(dataCity1.weather[0]);
     console.log(dataCity1.weather[0]["description"]);
     list__city.innerHTML = "" // очищуємо список коли вводимо місто ще раз
-    title__city.innerText = `${data.city["name"]}`
+    title__city.innerHTML = `<span>${data.city["name"]}</span> <span>${dataCity1.weather[0]["description"]}</span> <img src='http://openweathermap.org/img/wn/${dataCity1.weather[0].icon}@2x.png' alt="">`
     // console.clear();
 
     tableHours(); // запускаємо функцію яка вставляє години погоди
@@ -84,13 +95,12 @@ function startList() {
     )
 }
 
-function clearTable() {
-  const tdList = document.querySelectorAll('td');
-  tdList.forEach(td => td.innerHTML = '');
-}
-
 function tableHours() { // функція яка вставляє години погоди
-    clearTable();
+    
+const tdList = document.querySelectorAll('td'); // отримати список всіх тегів <td>
+for (let i = 4; i < tdList.length; i++) {
+    tdList[i].remove(); // видалити поточний тег <td>
+}
 
     for (let i = 0; i < 8; i++) {
         const dateTimeString = data["list"][i]["dt_txt"];
