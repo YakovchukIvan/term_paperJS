@@ -14,7 +14,7 @@
       <div class="search__block">
         <form action="" id="formCity">
           <label for="inputCity">Виберіть місто для погоди</label>
-          <input class="inputCity" type="text" />
+          <input id="inputCity" class="inputCity" type="text" autocomplete="off"/>
           <span class="inputValid">Невірно введено місто</span>
           <button class="btnSearch" type="submit">Пошук</button>
         </form>
@@ -34,7 +34,7 @@
 
         <tbody class="body__table">
           <tr class="tr__title">
-            <th>Години :</th>
+            <th></th>
             <!-- <td>00:00</td>
                     <td>03:00</td>
                     <td>06:00</td>
@@ -44,6 +44,19 @@
                     <td>18:00</td>
                     <td>21:00</td> -->
           </tr>
+
+          <tr class="tr__icon">
+            <th></th>
+            <!-- <td>00:00</td>
+                    <td>03:00</td>
+                    <td>06:00</td>
+                    <td>09:00</td>
+                    <td>12:00</td>
+                    <td>15:00</td>
+                    <td>18:00</td>
+                    <td>21:00</td> -->
+          </tr>
+
           <tr class="temp">
             <th>Температура :</th>
             <!-- <td>12</td>
@@ -52,6 +65,7 @@
                         <td>12</td>
                         <td>76</td> -->
           </tr>
+
           <tr class="temp__min">
             <th>МІН :</th>
             <!-- <td>12</td>
@@ -60,6 +74,7 @@
                     <td>12</td>
                     <td>76</td> -->
           </tr>
+
           <tr class="temp__max">
             <th>МАКС :</th>
             <!-- <td>23</td>
@@ -68,6 +83,7 @@
                     <td>12</td>
                     <td>23</td> -->
           </tr>
+
           <tr class="feels__like">
             <th>Відчувається як :</th>
             <!-- <td>23</td>
@@ -76,6 +92,7 @@
                     <td>12</td>
                     <td>23</td> -->
           </tr>
+
           <tr class="humidity">
             <th>Вологість:</th>
             <!-- <td>23</td>
@@ -84,6 +101,7 @@
                     <td>12</td>
                     <td>23</td> -->
           </tr>
+
           <tr class="gust__wind">
             <th>Порив вітру :</th>
             <!-- <td>23</td>
@@ -92,6 +110,7 @@
                     <td>12</td>
                     <td>23</td> -->
           </tr>
+
           <tr class="speed__wind">
             <th>Швидкість вітру :</th>
             <!-- <td>23</td>
@@ -100,6 +119,7 @@
                     <td>12</td>
                     <td>23</td> -->
           </tr>
+
           <tr class="pressure">
             <th>Тиск в повітрі :</th>
             <!-- <td>23</td>
@@ -111,7 +131,7 @@
         </tbody>
       </table>
 
-      <div class="weather__block">
+      <!-- <div class="weather__block">
         <ul class="list__city">
           <li>
             <span>Погода : </span> легкий дощ
@@ -128,7 +148,7 @@
           <li><span>Швидкість вітру : </span> 2.68 км</li>
         </ul>
       </div>
-    </div>
+    </div> -->
 
     <script src="./script/script.js" type="module"></script>
   </body>
