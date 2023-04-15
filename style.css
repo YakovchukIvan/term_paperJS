@@ -43,7 +43,7 @@ img {
     /* border: 1px solid red; */
 }
 
-.title__city {
+.block__title {
     position: relative;
     display: flex;
     justify-content: center;
@@ -53,13 +53,23 @@ img {
     height: 200px;
     border-radius: 8px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    margin: 0;
+    padding: 20px;
+}
+
+.title__city {
     text-align: center;
     align-self: center;
     font-size: 30px;
     font-weight: 500;
     color: rgb(44, 44, 44);
-    margin: 0;
-    padding: 20px;
+}
+
+.timeSpan {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 18px !important;
 }
 
 .title__city > span:nth-child(1) {

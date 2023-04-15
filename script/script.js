@@ -2,10 +2,11 @@
 
 const inputValid = document.querySelector(".inputValid") // inputValid
 const btnSearch = document.querySelector(".btnSearch") // кнопка пошуку міста
-// const inputCity = document.querySelector(".inputCity") // input search
+const block__title = document.querySelector(".block__title") 
 const title__city = document.querySelector(".title__city") // h1 
 const tr__title = document.querySelector(".tr__title") // години погоди
-const inputCity = document.getElementById("inputCity")
+const inputCity = document.getElementById("inputCity") // input search
+const timeSpan = document.querySelector(".timeSpan") // span для дати
 
 const table_list = document.querySelector(".table_list")
 const table__title = document.querySelector(".table__title")
@@ -20,10 +21,8 @@ const speed__wind  = document.querySelector(".speed__wind")
 const pressure = document.querySelector(".pressure")
 
 
-
-
-let data = {}
-// let cityUkraine = {}
+let data = {};
+// let cityUkraine = {};
 
 formCity.addEventListener("submit", (event) => {
     event.preventDefault()
@@ -44,16 +43,19 @@ formCity.addEventListener("submit", (event) => {
 //     console.log('cityUkraine: ', cityUkraine);
 // }
 
-
-
 async function fetchWeather(url){
-    table_list.style.display = "block"
     const res = await fetch(url);
     inputValid.style.display = "none";
     if (res.status === 404) { // валідатор помилки 404
         console.log('помилка');
-        inputValid.style.display = "block";
-    }
+        inputValid.style.display = "block"
+        table_list.style.display = "none"
+        block__title.innerHTML = ""
+    } 
+    if (res.status === 200) { // валідатор помилки 404
+        console.log('Good');
+        table_list.style.display = "block"
+    } 
 
     inputCity.value = "" // очищуємо пошук міста
     console.log(res);
@@ -61,10 +63,21 @@ async function fetchWeather(url){
     console.log('data: ', data);
 
     startList();
+    startTime();
+}
+
+function startTime() {
+  setInterval(() => {
+    const currDate = new Date();
+    const hours = currDate.getHours().toString().padStart(2, '0');
+    const minutes = currDate.getMinutes().toString().padStart(2, '0');
+    const seconds = currDate.getSeconds().toString().padStart(2, '0');
+    const timeString = `${hours}:${minutes}:${seconds}`;
+    timeSpan.textContent = timeString;
+  }, 1000);
 }
 
 function startList() {
-
     const cityList = data["list"];
     console.log('rivne: ', cityList);
     const dataCity1 = cityList[0];
