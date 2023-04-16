@@ -50,7 +50,7 @@ async function fetchWeather(url){
         console.log('помилка');
         inputValid.style.display = "block"
         table_list.style.display = "none"
-        block__title.innerHTML = ""
+
     } 
     if (res.status === 200) { // валідатор помилки 404
         console.log('Good');
@@ -62,8 +62,8 @@ async function fetchWeather(url){
     data = await res.json();
     console.log('data: ', data);
 
-    startList();
-    startTime();
+    startList(); // запускаємо функцію яка виводить заговолок
+    startTime(); // запускаємо функцію яка виводить годинник
 }
 
 function startTime() {
@@ -85,6 +85,44 @@ function startList() {
     console.log('dataCity1: ', dataCity1);
     console.log(dataCity1.weather[0]);
     console.log(dataCity1.weather[0]["description"]);
+    // console.clear();
+
+    const startDate = new Date(cityList[0].dt_txt); // дата з першого об'єкту
+    const endDate = new Date(startDate.getTime() + 86400000); // дата наступного дня
+    console.log(startDate);
+    console.log(endDate);
+
+    for (let i = 0; i < cityList.length; i++) {
+        const currentDate = new Date(cityList[i].dt_txt);
+        console.log(cityList.length);
+        if (currentDate >= endDate) {
+        console.log("New day starts at: ", endDate);
+        endDate.setTime(endDate.getTime() + 86400000); // збільшуємо дату на один день
+        }
+        // console.log(cityList[i].dt_txt);
+    }
+
+    // function startDayBlock() {
+    //     let count = 0;
+    //     let dateMe = new Date(cityList[count].dt * 1000); // помноження на 1000 для отримання мілісекунд
+    //     let day = dateMe.getDate();
+
+    //     for (let i = 0; count < 40; i++) {
+    //         dateMe = new Date(cityList[count].dt * 1000); // отримання нової дати з мілісекундами
+    //         const currentDay = dateMe.getDate();
+
+    //         if (currentDay !== day) {
+    //             day = currentDay;
+    //             count++;
+    //             console.log(day);
+    //         }
+            
+    //         count++;
+    //     }
+    // }
+
+    // startDayBlock();
+
 
     title__city.innerHTML = `<span>${data.city["name"]}</span> <span>${dataCity1.weather[0]["description"]}</span> <img src='http://openweathermap.org/img/wn/${dataCity1.weather[0].icon}@2x.png' alt="">`
     tableStart(); // запускаємо функцію яка заповнює таблицю

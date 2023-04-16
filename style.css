@@ -10,6 +10,7 @@ html {
 }
 
 body {
+    background-color: #F2F7FA;
     margin: 0;
     padding: 20px;
     font-family: "Roboto", sans-serif;
@@ -31,6 +32,7 @@ img {
     max-width: 1440px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 40px;
 }
 
@@ -67,8 +69,9 @@ img {
 
 .timeSpan {
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 20px;
+    left: 20px;
+    font-weight: 500;
     font-size: 18px !important;
 }
 
@@ -154,25 +157,74 @@ img {
     opacity: 0.8;
 }
 
+
+.block__card-day {
+    width: max-content;
+    display: flex;
+    gap: 20px;
+    border-radius: 8px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    padding: 25px;
+}
+
+.block__card-day > div {
+    width: 125px;
+    /* height: 175px; */
+    border-radius: 8px;
+    border: 1px solid #DDDDDD;
+    text-align: center;
+    /* box-shadow: rgba(60, 64, 67, 0.3) 1px 2px 5px 2px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; */
+}
+
+.day__one {
+    
+}
+
+.week__day {
+
+}
+
+.number__day {}
+
+.month {}
+
+.icon__weather {}
+
+.block__temp {
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin: 16px 0px;
+}
+
+.block__temp > div > span {
+    display: block;
+}
+
+.block__temp-min {
+    /* border: 1px solid rgb(59, 25, 25); */
+}
+
+.block__temp-max {
+    /* border: 1px solid rgb(3, 0, 0); */
+}
+
+
+
+.day__two {}
+
+.day__three {}
+
+.day__four {}
+
+.day__five {}
+
+
 .weather__block {
     border-radius: 8px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     padding: 10px 20px;
-}
-
-.list__city {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-.list__city>li {
-    margin-bottom: 10px;
-}
-
-.list__city>li:nth-child(1) {
-    /* border: 1px solid red; */
-    text-align: center;
 }
 
 .table_list {
