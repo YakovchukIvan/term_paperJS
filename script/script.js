@@ -20,28 +20,16 @@ const gust__wind = document.querySelector(".gust__wind")
 const speed__wind  = document.querySelector(".speed__wind")
 const pressure = document.querySelector(".pressure")
 
+const block__card = document.querySelector(".block__card-day") // блок погоди на 6 днів
 
 let data = {};
-// let cityUkraine = {};
 
 formCity.addEventListener("submit", (event) => {
     event.preventDefault()
-    
     const city = document.querySelector(".inputCity").value
     const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&lang=ua&appid=97322412d46e9614fc951685c9beceff`
-    
-    const urlCity = `https://raw.githubusercontent.com/Adushar/UkraineCitiesAndVillages/main/CitiesAndVillages%20-%2014%20March.json`
-
     fetchWeather(url)
-    
-    // ukraine(urlCity)
 })
-// async function ukraine(urlCity){
-//     const res = await fetch(urlCity);
-//     console.log(res);
-//     cityUkraine = await res.json();
-//     console.log('cityUkraine: ', cityUkraine);
-// }
 
 async function fetchWeather(url){
     const res = await fetch(url);
@@ -50,7 +38,6 @@ async function fetchWeather(url){
         console.log('помилка');
         inputValid.style.display = "block"
         table_list.style.display = "none"
-
     } 
     if (res.status === 200) { // валідатор помилки 404
         console.log('Good');
@@ -61,7 +48,7 @@ async function fetchWeather(url){
     console.log(res);
     data = await res.json();
     console.log('data: ', data);
-
+    
     startList(); // запускаємо функцію яка виводить заговолок
     startTime(); // запускаємо функцію яка виводить годинник
 }
@@ -78,8 +65,9 @@ function startTime() {
 }
 
 function startList() {
-    const cityList = data["list"];
-    console.log('rivne: ', cityList);
+    let cityList = {};
+    cityList = data["list"];
+    console.log('Місто: ', cityList);
     const dataCity1 = cityList[0];
     console.log('dataCity1: ', dataCity1["dt_txt"]);
     console.log('dataCity1: ', dataCity1);
@@ -87,46 +75,98 @@ function startList() {
     console.log(dataCity1.weather[0]["description"]);
     // console.clear();
 
-    const startDate = new Date(cityList[0].dt_txt); // дата з першого об'єкту
-    const endDate = new Date(startDate.getTime() + 86400000); // дата наступного дня
-    console.log(startDate);
-    console.log(endDate);
+    // for (let i = 0; i < cityList.length; i++) {
+    //     let dt_txt = cityList[i].dt_txt;
+    //     let date = new Date(dt_txt);
+    //     let hour = date.getHours();
+    //     if (hour === 0) {
 
-    for (let i = 0; i < cityList.length; i++) {
-        const currentDate = new Date(cityList[i].dt_txt);
-        console.log(cityList.length);
-        if (currentDate >= endDate) {
-        console.log("New day starts at: ", endDate);
-        endDate.setTime(endDate.getTime() + 86400000); // збільшуємо дату на один день
-        }
-        // console.log(cityList[i].dt_txt);
-    }
-
-    // function startDayBlock() {
-    //     let count = 0;
-    //     let dateMe = new Date(cityList[count].dt * 1000); // помноження на 1000 для отримання мілісекунд
-    //     let day = dateMe.getDate();
-
-    //     for (let i = 0; count < 40; i++) {
-    //         dateMe = new Date(cityList[count].dt * 1000); // отримання нової дати з мілісекундами
-    //         const currentDay = dateMe.getDate();
-
-    //         if (currentDay !== day) {
-    //             day = currentDay;
-    //             count++;
-    //             console.log(day);
-    //         }
-            
-    //         count++;
+    //         console.log(date.getDay()); // 
     //     }
     // }
+    block__card.innerHTML = '';
+    let counterDay = 0; // рахує скільки разів запускався цикл з днями та потім додає +1 до нового блоку. day__${counterDay}
+    for (let i = 0; i < cityList.length; i++) {
+        block__card.style.display = "flex";
 
-    // startDayBlock();
+        let dt_txt = cityList[i].dt_txt;
+        let date = new Date(dt_txt);
+        let hour = date.getHours();
+        
+        
+        if (hour === 0 || cityList[i] === cityList[0]) {
+            let dayOfWeek = date.toLocaleDateString('ua', { weekday: 'long' });
+            let dayNumber = date.toLocaleDateString('ua', {day: 'numeric'});
+            let monthNumber = date.toLocaleDateString('ua', {month: 'long'});
+            let result = cityList[i];
+            console.log(result);
+            
+            console.log("counterDay", counterDay);
+            counterDay++;
+            for (let j = 0; j < 1; j++) {  
+            console.log(result);
+            block__card.insertAdjacentHTML("beforeend", 
+                `
+                <div class="day__${counterDay}">
+                <p class="week__day">${dayOfWeek}</p>
+                <p class="number__day">${dayNumber}</p>
+                <p class="month">${monthNumber}</p>
+                <img src='http://openweathermap.org/img/wn/${result.weather[0].icon}@2x.png' title="${result.weather[0].description}" alt="icon">
+                <div class="block__temp">
+                    <div class="block__temp-min">
+                    <span>мін</span>
+                    <span>${Math.round(result.main["temp_min"])}°</span>
+                    </div>
+                    <div class="block__temp-max">
+                    <span>макс</span>
+                    <span>${Math.round(result.main["temp_max"])}°</span>
+                    </div>
+                </div>
+                </div>
+                `
+            );
+            
+            }
 
+        }
+    }
+
+    // const cardDays = document.querySelectorAll("[class^='day__']");
+    // // const cardDayOne = document.querySelector(".day__1")
+    // // const cardDayTwo = document.querySelector(".day__2")
+    // // const cardDayThree = document.querySelector(".day__3")
+    // // const cardDayFour = document.querySelector(".day__4")
+    // // const cardDayFive = document.querySelector(".day__5")
+    // // const cardDaySix = document.querySelector(".day__6")
+
+    // block__card.addEventListener("click", (event) => {
+    //     event.preventDefault()
+    //     if (cardDays[0]) {
+    //         cardDays[0].style.background = "green"
+    //     }
+    // })
+    const cardDays = document.querySelectorAll("[class^='day__']");
+    let lastClicked = null;
+
+    block__card.addEventListener("click", (event) => {
+        event.preventDefault();
+        const clicked = event.target.closest("[class^='day__']");
+        if (clicked) {
+            if (lastClicked) {
+                lastClicked.style.background = "";
+                lastClicked.style.transform = ""
+            }
+            lastClicked = clicked;
+            lastClicked.style.background = "#CFE2F0";
+            lastClicked.style.transform = "scale(1.05)"
+        }
+    });
 
     title__city.innerHTML = `<span>${data.city["name"]}</span> <span>${dataCity1.weather[0]["description"]}</span> <img src='http://openweathermap.org/img/wn/${dataCity1.weather[0].icon}@2x.png' alt="">`
     tableStart(); // запускаємо функцію яка заповнює таблицю
 }
+
+
 
 function tableStart() { // функція яка вставляє години погоди
 
