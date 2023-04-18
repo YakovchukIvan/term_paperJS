@@ -23,6 +23,9 @@ const pressure = document.querySelector(".pressure")
 const block__card = document.querySelector(".block__card-day") // блок погоди на 6 днів
 
 let data = {};
+let cityList = {};
+let cityList1 = 0; //
+let cityList2 = 0; //
 
 formCity.addEventListener("submit", (event) => {
     event.preventDefault()
@@ -65,7 +68,6 @@ function startTime() {
 }
 
 function startList() {
-    let cityList = {};
     cityList = data["list"];
     console.log('Місто: ', cityList);
     const dataCity1 = cityList[0];
@@ -73,27 +75,28 @@ function startList() {
     console.log('dataCity1: ', dataCity1);
     console.log(dataCity1.weather[0]);
     console.log(dataCity1.weather[0]["description"]);
-    // console.clear();
 
-    // for (let i = 0; i < cityList.length; i++) {
-    //     let dt_txt = cityList[i].dt_txt;
-    //     let date = new Date(dt_txt);
-    //     let hour = date.getHours();
-    //     if (hour === 0) {
-
-    //         console.log(date.getDay()); // 
-    //     }
-    // }
-    block__card.innerHTML = '';
+    block__card.innerHTML = ''; // коли функція ще раз спрацьовує чищимо блок з прогнозом на пару днів
     let counterDay = 0; // рахує скільки разів запускався цикл з днями та потім додає +1 до нового блоку. day__${counterDay}
+
     for (let i = 0; i < cityList.length; i++) {
         block__card.style.display = "flex";
 
         let dt_txt = cityList[i].dt_txt;
         let date = new Date(dt_txt);
+        console.log("date", date);
         let hour = date.getHours();
         
-        
+        const currDate = new Date();
+        const dayOfMonth = currDate.getDate();
+        console.log("dayOfMonth", dayOfMonth);
+
+        let currentDayOfMonth = date.getDate();
+
+        if (dayOfMonth === currentDayOfMonth) {
+            cityList1++;
+        }
+
         if (hour === 0 || cityList[i] === cityList[0]) {
             let dayOfWeek = date.toLocaleDateString('ua', { weekday: 'long' });
             let dayNumber = date.toLocaleDateString('ua', {day: 'numeric'});
@@ -105,7 +108,7 @@ function startList() {
             counterDay++;
             for (let j = 0; j < 1; j++) {  
             console.log(result);
-            block__card.insertAdjacentHTML("beforeend", 
+            block__card.insertAdjacentHTML("beforeend", // додаємо прогноз погоди на пару днів
                 `
                 <div class="day__${counterDay}">
                 <p class="week__day">${dayOfWeek}</p>
@@ -129,41 +132,53 @@ function startList() {
             }
 
         }
+
+
+
+        // console.clear()
+        if (dayOfMonth === currentDayOfMonth) {
+            document.querySelector('.day__1').style.background = "#CFE2F0";
+            document.querySelector('.day__1').style.transform = "scale(1.05)";
+
+            // console.log("dayOfMonth", dayOfMonth);
+            // console.log("currentDayOfMonth", currentDayOfMonth);
+            // console.log("cityList[i]", cityList[i]);
+
+
+            tableStart(); // запускаємо функцію яка заповнює таблицю
+        }
+
+
+        let lastClicked = null;
+        block__card.addEventListener("click", (event) => {
+            event.preventDefault();
+            const clicked = event.target.closest("[class^='day__']");
+
+
+            if (clicked) {
+                    document.querySelector('.day__1').style.background = "";
+                    document.querySelector('.day__1').style.transform = ""
+                if (lastClicked) {
+                    lastClicked.style.background = "";
+                    lastClicked.style.transform = ""
+                }
+                lastClicked = clicked;
+                lastClicked.style.background = "#CFE2F0";
+                lastClicked.style.transform = "scale(1.05)"
+                cityList1 = 8;
+                tableStart();
+                console.log(cityList1);
+            }
+        });
+
+        
     }
 
-    // const cardDays = document.querySelectorAll("[class^='day__']");
-    // // const cardDayOne = document.querySelector(".day__1")
-    // // const cardDayTwo = document.querySelector(".day__2")
-    // // const cardDayThree = document.querySelector(".day__3")
-    // // const cardDayFour = document.querySelector(".day__4")
-    // // const cardDayFive = document.querySelector(".day__5")
-    // // const cardDaySix = document.querySelector(".day__6")
 
-    // block__card.addEventListener("click", (event) => {
-    //     event.preventDefault()
-    //     if (cardDays[0]) {
-    //         cardDays[0].style.background = "green"
-    //     }
-    // })
-    const cardDays = document.querySelectorAll("[class^='day__']");
-    let lastClicked = null;
 
-    block__card.addEventListener("click", (event) => {
-        event.preventDefault();
-        const clicked = event.target.closest("[class^='day__']");
-        if (clicked) {
-            if (lastClicked) {
-                lastClicked.style.background = "";
-                lastClicked.style.transform = ""
-            }
-            lastClicked = clicked;
-            lastClicked.style.background = "#CFE2F0";
-            lastClicked.style.transform = "scale(1.05)"
-        }
-    });
 
     title__city.innerHTML = `<span>${data.city["name"]}</span> <span>${dataCity1.weather[0]["description"]}</span> <img src='http://openweathermap.org/img/wn/${dataCity1.weather[0].icon}@2x.png' alt="">`
-    tableStart(); // запускаємо функцію яка заповнює таблицю
+    // tableStart(); // запускаємо функцію яка заповнює таблицю
 }
 
 
@@ -175,7 +190,7 @@ function tableStart() { // функція яка вставляє години �
         tdList[i].remove(); // видалити поточний тег <td>, очищує таблицю коли вводимо нове місто
     }
 
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < cityList1; i++) {
         const dateTimeString = data["list"][i]["dt_txt"];
         console.log(data["list"][i]["dt_txt"]);
         const date = new Date(dateTimeString);
@@ -190,7 +205,7 @@ function tableStart() { // функція яка вставляє години �
         )
     } // цикл для часу погоди
 
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < cityList1; i++) {
         const city = data["list"][i];
         console.log(city);
         const result = city.weather[0].icon;
@@ -204,7 +219,7 @@ function tableStart() { // функція яка вставляє години �
         // цикл для icon
     } 
 
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < cityList1; i++) {
         const city = data["list"][i];
         const result = Math.round(city.main["temp"]);
         temp.insertAdjacentHTML("beforeend", 
@@ -215,7 +230,7 @@ function tableStart() { // функція яка вставляє години �
         // цикл для температури 
     }
 
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < cityList1; i++) {
         const city = data["list"][i];
         const result = Math.round(city.main["temp_min"]);
         temp__min.insertAdjacentHTML("beforeend", 
@@ -226,7 +241,7 @@ function tableStart() { // функція яка вставляє години �
         // цикл МІН температури
     }
 
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < cityList1; i++) {
         const city = data["list"][i];
         const result = Math.round(city.main["temp_max"]);
         temp__max.insertAdjacentHTML("beforeend", 
@@ -237,7 +252,7 @@ function tableStart() { // функція яка вставляє години �
         // цикл МАКС температури
     }
 
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < cityList1; i++) {
         const city = data["list"][i];
         const result = Math.round(city.main["feels_like"]);
         feels__like.insertAdjacentHTML("beforeend", 
@@ -248,7 +263,7 @@ function tableStart() { // функція яка вставляє години �
         // цикл для відчуття температури
     }
 
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < cityList1; i++) {
         const city = data["list"][i];
         const result = city.main["humidity"];
         humidity.insertAdjacentHTML("beforeend", 
@@ -259,7 +274,7 @@ function tableStart() { // функція яка вставляє години �
         // цикл для вологості
     }
 
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < cityList1; i++) {
         const city = data["list"][i];
         const result = Math.round(city.wind["gust"]);
         gust__wind.insertAdjacentHTML("beforeend", 
@@ -270,7 +285,7 @@ function tableStart() { // функція яка вставляє години �
         // цикл для пориву вітру
     }
 
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < cityList1; i++) {
         const city = data["list"][i];
         const result = Math.round(city.wind["speed"]);
         speed__wind.insertAdjacentHTML("beforeend", 
@@ -281,7 +296,7 @@ function tableStart() { // функція яка вставляє години �
         // цикл для швидкість повітря
     }
 
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < cityList1; i++) {
         const city = data["list"][i];
         const result = city.main["pressure"];
         pressure.insertAdjacentHTML("beforeend", 
@@ -293,3 +308,52 @@ function tableStart() { // функція яка вставляє години �
     }
 
 }
+
+// function tableStart() { // функція яка вставляє години погоди
+
+//     console.log(cityList);
+
+//     const tdList = document.querySelectorAll('td'); // отримати список всіх тегів <td>
+//     for (let i = 4; i < tdList.length; i++) {
+//         tdList[i].remove(); // видалити поточний тег <td>, очищує таблицю коли вводимо нове місто
+//     }
+
+//     const createTableCell = (data, property) => {
+//         let result = "";
+//         for (let i = 0; i < 8; i++) {
+//             result += `<td>${data["list"][i][property]}</td>`;
+//         }
+//         return result;
+//     }
+
+//     const createIconCell = (data) => {
+//         let result = "";
+//         for (let i = 0; i < 8; i++) {
+//             const icon = data["list"][i].weather[0].icon;
+//             const description = data["list"][i].weather[0].description;
+//             result += `<td><img src='http://openweathermap.org/img/wn/${icon}@2x.png'
+//                         alt="${icon}" title="${description}"></td>`;
+//         }
+//         return result;
+//     }
+
+//     const createTemperatureCell = (data, property) => {
+//         let result = "";
+//         for (let i = 0; i < 8; i++) {
+//             const temperature = Math.round(data["list"][i].main[property]);
+//             result += `<td>${temperature} °C</td>`;
+//         }
+//         return result;
+//     }
+
+//     tr__title.insertAdjacentHTML("beforeend", createTableCell(data, "dt_txt"));
+//     tr__icon.insertAdjacentHTML("beforeend", createIconCell(data));
+//     temp.insertAdjacentHTML("beforeend", createTemperatureCell(data, "temp"));
+//     temp__min.insertAdjacentHTML("beforeend", createTemperatureCell(data, "temp_min"));
+//     temp__max.insertAdjacentHTML("beforeend", createTemperatureCell(data, "temp_max"));
+//     feels__like.insertAdjacentHTML("beforeend", createTemperatureCell(data, "feels_like"));
+//     humidity.insertAdjacentHTML("beforeend", createTableCell(data, "humidity"));
+//     gust__wind.insertAdjacentHTML("beforeend", createTemperatureCell(data, "gust"));
+//     speed__wind.insertAdjacentHTML("beforeend", createTemperatureCell(data, "speed"));
+//     pressure.insertAdjacentHTML("beforeend", createTableCell(data, "pressure"));
+// } скорочений варіант
