@@ -87,6 +87,18 @@ function startList() {
     let dayFiveBlock = [];
     let daySixBlock = [];
 
+
+    let dayBlocks = [
+        dayOneBlock,
+        dayTwoBlock,
+        dayThreeBlock,
+        dayFourBlock,
+        dayFiveBlock,
+        daySixBlock
+    ];
+
+    console.log(dayBlocks);
+
     for (let i = 0; i < cityList.length; i++) {
 
         let dt_txt = data["list"][i].dt_txt;
@@ -108,7 +120,8 @@ function startList() {
         }
         if ((dayOfMonth + 1) === currentDayOfMonth) {
             dayTwoBlock[date] = data["list"][i];
-            
+            console.log("день другий", data["list"][i]);
+            console.log();
         }
         if ((dayOfMonth + 2) === currentDayOfMonth) {
             dayThreeBlock[date] = data["list"][i];
@@ -125,12 +138,13 @@ function startList() {
 
     }
 
-    console.log("dayOneBlock", Object.keys(dayOneBlock).length);
-    console.log("dayTwoBlock", Object.keys(dayTwoBlock).length);
-    console.log("dayThreeBlock", Object.keys(dayThreeBlock).length);
-    console.log("dayFourBlock", Object.keys(dayFourBlock).length);
-    console.log("dayFiveBlock", Object.keys(dayFiveBlock).length);
-    console.log("daySixBlock", Object.keys(daySixBlock).length);
+    // console.log("dayOneBlock", Object.keys(dayOneBlock).length);
+    // console.log("dayTwoBlock", Object.keys(dayTwoBlock).length);
+    console.log("dayTwoBlock", dayTwoBlock);    
+    // console.log("dayThreeBlock", Object.keys(dayThreeBlock).length);
+    // console.log("dayFourBlock", Object.keys(dayFourBlock).length);
+    // console.log("dayFiveBlock", Object.keys(dayFiveBlock).length);
+    // console.log("daySixBlock", Object.keys(daySixBlock).length);
 
 
     for (let i = 0; i < cityList.length; i++) {
@@ -198,114 +212,74 @@ function startList() {
     }
 
     let lastClicked = null;
-    const dayBlocks = [
-    dayOneBlock,
-    dayTwoBlock,
-    dayThreeBlock,
-    dayFourBlock,
-    dayFiveBlock,
-    daySixBlock
-    ];
-    // block__card.addEventListener("click", (event) => {
-    //     event.preventDefault();
-    //     const clicked = event.target.closest("[class^='day__']");
-
-    //     if (clicked) {
-    //             document.querySelector('.day__1').style.background = "";
-    //             document.querySelector('.day__1').style.transform = ""
-    //         if (lastClicked) {
-    //             lastClicked.style.background = "";
-    //             lastClicked.style.transform = ""
-    //         }
-    //         lastClicked = clicked;
-    //         lastClicked.style.background = "#CFE2F0";
-    //         lastClicked.style.transform = "scale(1.05)"
-    //         if (lastClicked.classList.contains('day__1')) {
-    //             console.log("Good1");
-    //             let result = dayOneBlock;
-    //             tableStart(result);
-    //         }
-    //         if (lastClicked.classList.contains('day__2')) {
-    //             console.log("Good2");
-    //             let result = dayTwoBlock;
-    //             tableStart(result);
-    //         }
-    //         if (lastClicked.classList.contains('day__3')) {
-    //             console.log("Good3");
-    //             let result = dayThreeBlock;
-    //             tableStart(result);
-    //         }
-    //         if (lastClicked.classList.contains('day__4')) {
-    //             console.log("Good4");
-    //             let result = dayFourBlock;
-    //             tableStart(result);
-    //         }
-    //         if (lastClicked.classList.contains('day__5')) {
-    //             console.log("Good5");
-    //             let result = dayFiveBlock;
-    //             tableStart(result);
-    //         }
-    //         if (lastClicked.classList.contains('day__6')) {
-    //             console.log("Good6");
-    //             let result = daySixBlock;
-    //             tableStart(result);
-    //         }
-            
-    //     }
-
-    //     // if (document.querySelector('.day__1')) {
-    //     //     console.log("Good");
-    //     // }
-    //     // if ((dayOfMonth + 1) === currentDayOfMonth) {
-            
-    //     // }
-    //     // if ((dayOfMonth + 2) === currentDayOfMonth) {
-            
-    //     // }
-    //     // if ((dayOfMonth + 3) === currentDayOfMonth) {
-            
-    //     // }
-    //     // if ((dayOfMonth + 4) === currentDayOfMonth) {
-            
-    //     // }
-    //     // if ((dayOfMonth + 5) === currentDayOfMonth) {
-            
-    //     // }
-
-    // });
 
     block__card.addEventListener("click", (event) => {
-    event.preventDefault();
-    const clicked = event.target.closest("[class^='day__']");
+        event.preventDefault();
+        const clicked = event.target.closest("[class^='day__']");
 
-    if (clicked) {
-        if (lastClicked) {
-        lastClicked.style.background = "";
-        lastClicked.style.transform = "";
+        if (clicked) {
+                document.querySelector('.day__1').style.background = "";
+                document.querySelector('.day__1').style.transform = ""
+            if (lastClicked) {
+                lastClicked.style.background = "";
+                lastClicked.style.transform = ""
+            }
+            lastClicked = clicked;
+            lastClicked.style.background = "#CFE2F0";
+            lastClicked.style.transform = "scale(1.05)"
+            if (lastClicked.classList.contains('day__1')) {
+                console.log("Good1");
+                let result = dayTwoBlock;
+                tableStart(result);
+            }
+            // if (lastClicked.classList.contains('day__2')) {
+            //     console.log("Good2");
+            //     let result = dayTwoBlock;
+            //     tableStart(result);
+            // }
+            // if (lastClicked.classList.contains('day__3')) {
+            //     console.log("Good3");
+            //     let result = dayThreeBlock;
+            //     tableStart(result);
+            // }
+            // if (lastClicked.classList.contains('day__4')) {
+            //     console.log("Good4");
+            //     let result = dayFourBlock;
+            //     tableStart(result);
+            // }
+            // if (lastClicked.classList.contains('day__5')) {
+            //     console.log("Good5");
+            //     let result = dayFiveBlock;
+            //     tableStart(result);
+            // }
+            // if (lastClicked.classList.contains('day__6')) {
+            //     console.log("Good6");
+            //     let result = daySixBlock;
+            //     tableStart(result);
+            // }
+            
         }
 
-        lastClicked = clicked;
-        lastClicked.style.background = "#CFE2F0";
-        lastClicked.style.transform = "scale(1.05)";
+        // if (document.querySelector('.day__1')) {
+        //     console.log("Good");
+        // }
+        // if ((dayOfMonth + 1) === currentDayOfMonth) {
+            
+        // }
+        // if ((dayOfMonth + 2) === currentDayOfMonth) {
+            
+        // }
+        // if ((dayOfMonth + 3) === currentDayOfMonth) {
+            
+        // }
+        // if ((dayOfMonth + 4) === currentDayOfMonth) {
+            
+        // }
+        // if ((dayOfMonth + 5) === currentDayOfMonth) {
+            
+        // }
 
-        if (lastClicked.classList.contains('day__1')) {
-        tableStart(dayOneBlock);
-        } else if (lastClicked.classList.contains('day__2')) {
-        tableStart(dayTwoBlock);
-        } else if (lastClicked.classList.contains('day__3')) {
-        tableStart(dayThreeBlock);
-        } else if (lastClicked.classList.contains('day__4')) {
-        tableStart(dayFourBlock);
-        } else if (lastClicked.classList.contains('day__5')) {
-        tableStart(dayFiveBlock);
-        } else if (lastClicked.classList.contains('day__6')) {
-        tableStart(daySixBlock);
-        }
-    }
     });
-
-
-
 
     title__city.innerHTML = `<span>${data.city["name"]}</span> <span>${dataCity1.weather[0]["description"]}</span> <img src='http://openweathermap.org/img/wn/${dataCity1.weather[0].icon}@2x.png' alt="">`
     // tableStart(); // запускаємо функцію яка заповнює таблицю
