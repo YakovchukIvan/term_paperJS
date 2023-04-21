@@ -206,7 +206,9 @@ function startList() {
         if (dayOfMonth === currentDayOfMonth) {
             document.querySelector('.day__1').style.background = "#CFE2F0";
             document.querySelector('.day__1').style.transform = "scale(1.05)";
-            // tableStart(dayOneBlock);
+            let start = 0;
+            let end = Object.keys(dayBlocks[0]).length;
+            tableStart(start, end);
         }
 
     }
@@ -216,6 +218,7 @@ function startList() {
     block__card.addEventListener("click", (event) => {
         event.preventDefault();
         const clicked = event.target.closest("[class^='day__']");
+
 
         if (clicked) {
                 document.querySelector('.day__1').style.background = "";
@@ -229,55 +232,53 @@ function startList() {
             lastClicked.style.transform = "scale(1.05)"
             if (lastClicked.classList.contains('day__1')) {
                 console.log("Good1");
-                let result = dayTwoBlock;
-                tableStart(result);
+                // let start = Object.keys(dayBlocks[0]).length + Object.keys(dayBlocks[0]).length;
+                // let end = Object.keys(dayBlocks[0]).length + Object.keys(dayBlocks[0]).length;
+                let start = 0;
+                let end = Object.keys(dayBlocks[0]).length;
+                console.log(dayBlocks[0]);
+                console.log(start, end);
+                tableStart(start, end);
             }
-            // if (lastClicked.classList.contains('day__2')) {
-            //     console.log("Good2");
-            //     let result = dayTwoBlock;
-            //     tableStart(result);
-            // }
-            // if (lastClicked.classList.contains('day__3')) {
-            //     console.log("Good3");
-            //     let result = dayThreeBlock;
-            //     tableStart(result);
-            // }
-            // if (lastClicked.classList.contains('day__4')) {
-            //     console.log("Good4");
-            //     let result = dayFourBlock;
-            //     tableStart(result);
-            // }
-            // if (lastClicked.classList.contains('day__5')) {
-            //     console.log("Good5");
-            //     let result = dayFiveBlock;
-            //     tableStart(result);
-            // }
-            // if (lastClicked.classList.contains('day__6')) {
-            //     console.log("Good6");
-            //     let result = daySixBlock;
-            //     tableStart(result);
-            // }
+            if (lastClicked.classList.contains('day__2')) {
+                console.log("Good2");
+                let start = Object.keys(dayBlocks[0]).length;
+                let end = Object.keys(dayBlocks[0]).length + Object.keys(dayBlocks[1]).length;
+                console.log(dayBlocks[1]);
+                console.log(start, end);
+                tableStart(start, end);
+            }
+            if (lastClicked.classList.contains('day__3')) {
+                console.log("Good3");
+                let start = Object.keys(dayBlocks[0]).length + Object.keys(dayBlocks[1]).length;
+                let end = Object.keys(dayBlocks[0]).length + Object.keys(dayBlocks[1]).length + Object.keys(dayBlocks[2]).length;
+                console.log(dayBlocks[2]);
+                console.log(start, end);
+                tableStart(start, end);
+            }
+            if (lastClicked.classList.contains('day__4')) {
+                let start = Object.keys(dayBlocks[0]).length + Object.keys(dayBlocks[1]).length + Object.keys(dayBlocks[2]).length;
+                let end = Object.keys(dayBlocks[0]).length + Object.keys(dayBlocks[1]).length + Object.keys(dayBlocks[2]).length + Object.keys(dayBlocks[3]).length;
+                console.log(dayBlocks[3]);
+                console.log(start, end);
+                tableStart(start, end);
+            }
+            if (lastClicked.classList.contains('day__5')) {
+                let start = Object.keys(dayBlocks[0]).length + Object.keys(dayBlocks[1]).length + Object.keys(dayBlocks[2]).length + Object.keys(dayBlocks[3]).length;
+                let end = Object.keys(dayBlocks[0]).length + Object.keys(dayBlocks[1]).length + Object.keys(dayBlocks[2]).length + Object.keys(dayBlocks[3]).length + Object.keys(dayBlocks[4]).length;
+                console.log(dayBlocks[4]);
+                console.log(start, end);
+                tableStart(start, end);
+            }
+            if (lastClicked.classList.contains('day__6')) {
+                let start = Object.keys(dayBlocks[0]).length + Object.keys(dayBlocks[1]).length + Object.keys(dayBlocks[2]).length + Object.keys(dayBlocks[3]).length + Object.keys(dayBlocks[4]).length;
+                let end = Object.keys(dayBlocks[0]).length + Object.keys(dayBlocks[1]).length + Object.keys(dayBlocks[2]).length + Object.keys(dayBlocks[3]).length + Object.keys(dayBlocks[4]).length + Object.keys(dayBlocks[5]).length;
+                console.log(dayBlocks[5]);
+                console.log(start, end);
+                tableStart(start, end);
+            }
             
         }
-
-        // if (document.querySelector('.day__1')) {
-        //     console.log("Good");
-        // }
-        // if ((dayOfMonth + 1) === currentDayOfMonth) {
-            
-        // }
-        // if ((dayOfMonth + 2) === currentDayOfMonth) {
-            
-        // }
-        // if ((dayOfMonth + 3) === currentDayOfMonth) {
-            
-        // }
-        // if ((dayOfMonth + 4) === currentDayOfMonth) {
-            
-        // }
-        // if ((dayOfMonth + 5) === currentDayOfMonth) {
-            
-        // }
 
     });
 
@@ -287,26 +288,27 @@ function startList() {
 
 
 
-function tableStart(result) { // функція яка вставляє години погоди
+function tableStart(start, end) { // функція яка вставляє години погоди
 
     const tdList = document.querySelectorAll('td'); // отримати список всіх тегів <td>
     for (let i = 0; i < tdList.length; i++) {
         tdList[i].remove(); // видалити поточний тег <td>, очищує таблицю коли вводимо нове місто
     }
 
-    
+    console.log(start);
+    console.log(end);
 
-    const startIndex = Object.keys(result).length;
-    console.log(startIndex);
-    for (let i = 0; i < startIndex; i++) {
+    // const startIndex = Object.keys(result).length;
+
+    for (let i = start; i < end; i++) {
             
         const dateTimeString = data["list"][i]["dt_txt"];
         // console.log(data["list"][i]["dt_txt"]);
         const date = new Date(dateTimeString);
         const hours = date.getHours().toString().padStart(2, '0');
         const minutes = date.getMinutes().toString().padStart(2, '0');
-        // const resultTime = `${hours}:${minutes}`; // виведе "06 30"
-        const resultTime = `${date}`; // виведе "06 30"
+        const resultTime = `${hours}:${minutes}`; // виведе "06 30"
+        // const resultTime = `${date}`; // виведе всю дату
         // цикл для часу погоди
 
         const cityIcon = data["list"][i];
@@ -355,8 +357,8 @@ function tableStart(result) { // функція яка вставляє годи
         tr__title.insertAdjacentHTML("beforeend", `<td>${resultTime}</td>`)
         tr__icon.insertAdjacentHTML("beforeend", `<td><img src='http://openweathermap.org/img/wn/${resultCity}@2x.png' alt="result" title="${description}"></td>`)
         temp.insertAdjacentHTML("beforeend", `<td>${resultTemp} °C</td>`)
-        temp__min.insertAdjacentHTML("beforeend", `<td>${resultTempMin} °C</td>`)
         feels__like.insertAdjacentHTML("beforeend", `<td>${resultTempFeels} °C</td>`)
+        temp__min.insertAdjacentHTML("beforeend", `<td>${resultTempMin} °C</td>`)
         humidity.insertAdjacentHTML("beforeend", `<td>${resultHumidity} %</td>`)
         gust__wind.insertAdjacentHTML("beforeend", `<td>${resultGust} м/сек</td>`)
         speed__wind.insertAdjacentHTML("beforeend", `<td>${resultSpeed} м/сек</td>`)
