@@ -186,11 +186,11 @@ function startList() {
                 <img src='http://openweathermap.org/img/wn/${result.weather[0].icon}@2x.png' title="${result.weather[0].description}" alt="icon">
                 <div class="block__temp">
                     <div class="block__temp-min">
-                    <span>мін</span>
+                    <span>мін.</span>
                     <span>${Math.round(result.main["temp_min"])}°</span>
                     </div>
                     <div class="block__temp-max">
-                    <span>макс</span>
+                    <span>макс.</span>
                     <span>${Math.round(result.main["temp_max"])}°</span>
                     </div>
                 </div>

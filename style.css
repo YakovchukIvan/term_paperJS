@@ -76,12 +76,12 @@ img {
     top: 20px;
     left: 20px;
     font-weight: 500;
-    font-size: clamp(0.75rem, 0.592rem + 0.79vw, 1.125rem) !important;
+    font-size: clamp(0.875rem, 0.77rem + 0.53vw, 1.125rem) !important;
 }
 
 .title__city > span:nth-child(1) {
     color: rgb(44, 44, 44);
-    font-size: clamp(1rem, 0.368rem + 3.16vw, 2.5rem);
+    font-size: clamp(1.25rem, 0.724rem + 2.63vw, 2.5rem);
     font-weight: 400;
 }
 
@@ -92,7 +92,7 @@ img {
     width: max-content;
     /* border: 1px solid rgb(0, 255, 13); */
     color: rgb(100, 96, 96);
-    font-size: clamp(0.75rem, 0.645rem + 0.53vw, 1rem);
+    font-size: clamp(0.875rem, 0.822rem + 0.26vw, 1rem);
     font-weight: 400;
 }
 
@@ -133,7 +133,7 @@ img {
 }
 
 #formCity > label {
-    font-size: clamp(0.75rem, 0.592rem + 0.79vw, 1.125rem);
+    font-size: 16px;
 }
 
 .inputCity {
@@ -148,7 +148,7 @@ img {
     align-self: center;
     background-color: rgb(38, 125, 224);
     color: #ebe2e2;
-    font-size: 16px;
+    font-size: clamp(1rem, 0.947rem + 0.26vw, 1.125rem);
     font-weight: 400;
     letter-spacing: 1px;
     border: none;
@@ -353,5 +353,28 @@ td:last-child {
         box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
         padding: 10px 20px;
         border: 1px solid rgb(0, 238, 255);
+    }
+
+    .block__card-day {
+        width: 100%;
+        overflow: scroll;
+    }
+    .block__card-day>div{
+        padding: 5px 10px;
+    }
+    .block__card-day > div > p, .block__temp{
+        font-size: 14px;
+        margin: 0;
+        padding: 0;
+    }
+    .number__day {
+        font-size: 15px;
+        font-weight: 500;
+    }
+    .block__temp > div > span:nth-child(1) {
+        color: grey;
+    }
+    .block__temp>div>span:nth-child(2) {
+        font-size: 15px;
     }
 }
