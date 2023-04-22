@@ -236,7 +236,6 @@ img {
     padding: 15px 20px;
     margin-bottom: 50px;
     border-collapse: collapse;
-    overflow: hidden;
     border: 1px solid rgb(180, 178, 178);
 }
 
@@ -315,6 +314,14 @@ td:last-child {
 }
 
 @media screen and (max-width: 920px) {
+    body {
+        padding: 5px;
+    }
+    .wrapper {
+        padding: 0px;
+    }
+
+
     .search__block {
         max-width: 100%;
         width: 800px;
@@ -376,5 +383,11 @@ td:last-child {
     }
     .block__temp>div>span:nth-child(2) {
         font-size: 15px;
+    }
+
+    .table_list {
+        width: 100%;
+        overflow: scroll;
+        font-size: 14px;
     }
 }
