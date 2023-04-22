@@ -299,7 +299,6 @@ function tableStart(start, end) { // функція яка вставляє го
     console.log(end);
 
     // const startIndex = Object.keys(result).length;
-
     for (let i = start; i < end; i++) {
             
         const dateTimeString = data["list"][i]["dt_txt"];
@@ -326,11 +325,6 @@ function tableStart(start, end) { // функція яка вставляє го
 
         const cityTempMax = data["list"][i];
         const resultTempMax = Math.round(cityTempMax.main["temp_max"]);
-        temp__max.insertAdjacentHTML("beforeend", 
-        `
-        <td>${resultTempMax} °C</td>
-        `
-        )
         // цикл МАКС температури
 
         const cityTempFeels = data["list"][i];
@@ -351,21 +345,39 @@ function tableStart(start, end) { // функція яка вставляє го
 
         const cityPressure = data["list"][i];
         const resultPressure = cityPressure.main["pressure"];
-        pressure.insertAdjacentHTML("beforeend", `<td>${resultPressure} Па</td>`)
+        
         // цикл для тиску повітря
 
-        tr__title.insertAdjacentHTML("beforeend", `<td>${resultTime}</td>`)
-        tr__icon.insertAdjacentHTML("beforeend", `<td><img src='http://openweathermap.org/img/wn/${resultCity}@2x.png' alt="result" title="${description}"></td>`)
-        temp.insertAdjacentHTML("beforeend", `<td>${resultTemp} °C</td>`)
-        feels__like.insertAdjacentHTML("beforeend", `<td>${resultTempFeels} °C</td>`)
-        temp__min.insertAdjacentHTML("beforeend", `<td>${resultTempMin} °C</td>`)
-        humidity.insertAdjacentHTML("beforeend", `<td>${resultHumidity} %</td>`)
-        gust__wind.insertAdjacentHTML("beforeend", `<td>${resultGust} м/сек</td>`)
-        speed__wind.insertAdjacentHTML("beforeend", `<td>${resultSpeed} м/сек</td>`)
-    
+        if (start === 0 ) {
+            tr__title.insertAdjacentHTML("beforeend", `<td class="title_today">${resultTime}</td>`)
+            tr__icon.insertAdjacentHTML("beforeend", `<td class="td_today"><img src='http://openweathermap.org/img/wn/${resultCity}@2x.png' alt="result" title="${description}"></td>`)
+            temp.insertAdjacentHTML("beforeend", `<td class="td_today">${resultTemp} °C</td>`)
+            feels__like.insertAdjacentHTML("beforeend", `<td class="feels__like_today">${resultTempFeels} °C</td>`)
+            temp__min.insertAdjacentHTML("beforeend", `<td class="td_today">${resultTempMin} °C</td>`)
+            temp__max.insertAdjacentHTML("beforeend", `<td class="td_today">${resultTempMax} °C</td>`)
+            humidity.insertAdjacentHTML("beforeend", `<td class="humidity_today">${resultHumidity} %</td>`)
+            gust__wind.insertAdjacentHTML("beforeend", `<td class="td_today">${resultGust} м/сек</td>`)
+            speed__wind.insertAdjacentHTML("beforeend", `<td class="td_today">${resultSpeed} м/сек</td>`)
+            pressure.insertAdjacentHTML("beforeend", `<td class="pressure_today">${resultPressure} Па</td>`)
+            start = 1;
+        } else {
+            tr__title.insertAdjacentHTML("beforeend", `<td>${resultTime}</td>`)
+            tr__icon.insertAdjacentHTML("beforeend", `<td><img src='http://openweathermap.org/img/wn/${resultCity}@2x.png' alt="result" title="${description}"></td>`)
+            temp.insertAdjacentHTML("beforeend", `<td>${resultTemp} °C</td>`)
+            feels__like.insertAdjacentHTML("beforeend", `<td>${resultTempFeels} °C</td>`)
+            temp__min.insertAdjacentHTML("beforeend", `<td>${resultTempMin} °C</td>`)
+            temp__max.insertAdjacentHTML("beforeend", `<td>${resultTempMax} °C</td>`)
+            humidity.insertAdjacentHTML("beforeend", `<td>${resultHumidity} %</td>`)
+            gust__wind.insertAdjacentHTML("beforeend", `<td>${resultGust} м/сек</td>`)
+            speed__wind.insertAdjacentHTML("beforeend", `<td>${resultSpeed} м/сек</td>`)
+            pressure.insertAdjacentHTML("beforeend", `<td>${resultPressure} Па</td>`)
+        }
+        
     }
     console.log(tdList.length);
     
+
+    // перший варіант виведення інформації в таблицю
     // for (let i = 0; i < 8; i++) {
     //     const dateTimeString = data["list"][i]["dt_txt"];
     //     console.log(data["list"][i]["dt_txt"]);
