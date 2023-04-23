@@ -397,18 +397,25 @@ td:last-child {
         position: sticky;
         left: -5px;
         z-index: 20;
+        font-size: 12px;
+        padding: 5px 5px;
         /* border: 1px solid red; */
     }
     .tr__icon > th {
         /* border: 1px solid red; */
         display: inline-block;
-        width: 140px;
-        height: 80px;
+        width: 110px;
+        height: 55px;
+    }
+    .tr__icon>td>img {
+        width: 55px;
+        height: 55px;
     }
     .feels__like > th {
         /* border: 1px solid red; */
     }
     td {
+        font-size: 15px !important;
         padding: 5px 0px;
     }
 }
