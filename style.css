@@ -36,7 +36,7 @@ img {
     align-items: center;
     gap: 40px;
     padding: 20px;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 
 .search__block {
@@ -45,10 +45,11 @@ img {
     display: flex;
     justify-content: space-between;
     gap: 40px;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 
 .block__title {
+    background-color: #fff;
     position: relative;
     display: flex;
     justify-content: center;
@@ -60,7 +61,7 @@ img {
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     margin: 0;
     padding: 20px;
-    border: 1px solid rgb(166, 255, 0);
+    /* border: 1px solid rgb(166, 255, 0); */
 }
 
 .title__city {
@@ -100,8 +101,7 @@ img {
     position: absolute;
     right: 10px;
     top: 0px;
-    /* border: 1px solid red; */
-    
+    /* border: 1px solid red;   */
 }
 
 #formCity {
@@ -115,7 +115,7 @@ img {
     border-radius: 8px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     padding: 10px 20px;
-    border: 1px solid rgb(0, 238, 255);
+    /* border: 1px solid rgb(0, 238, 255); */
 }
 
 .inputValid {
@@ -321,7 +321,6 @@ td:last-child {
         padding: 0px;
     }
 
-
     .search__block {
         max-width: 100%;
         width: 800px;
@@ -329,18 +328,8 @@ td:last-child {
         justify-content: center;
     }
     .block__title {
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 40px;
         width: 100%;
         height: max-content;
-        border-radius: 8px;
-        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-        margin: 0;
-        padding: 20px;
-        border: 1px solid rgb(166, 255, 0);
     }
 
     .title__city {
@@ -348,18 +337,32 @@ td:last-child {
         padding: 0;
     }
 
+    .timeSpan {
+        top: 10px;
+        left: 10px;
+    }
+
+    .title__city>span:nth-child(2) {
+        position: absolute;
+        right: 20px;
+        top: 40px;
+        width: 50px;
+        border: 1px solid rgb(0, 255, 13);
+        color: rgb(100, 96, 96);
+        font-size: 10px;
+        font-weight: 400;
+    }
+
+    .title__city>img {
+        position: absolute;
+        right: 0px;
+        top: -10px;
+        /* border: 1px solid red; */
+    }
+
     #formCity {
-        background-color: rgb(197, 220, 224);
-        position: relative;
         width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
         max-width: 100%;
-        border-radius: 8px;
-        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-        padding: 10px 20px;
-        border: 1px solid rgb(0, 238, 255);
     }
 
     .block__card-day {
@@ -400,20 +403,10 @@ td:last-child {
         font-size: 12px;
         padding: 5px 0px;
         padding-left: 5px;
-        /* border: 1px solid red; */
     }
-    /* .tr__icon > th {
-        border: 1px solid red;
-        display: inline-block;
-        width: 110px;
-        height: 55px;
-    } */
     .tr__icon>td>img {
         width: 55px;
         height: 55px;
-    }
-    .feels__like > th {
-        /* border: 1px solid red; */
     }
     td {
         font-size: 15px !important;
