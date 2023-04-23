@@ -351,8 +351,8 @@ function tableStart(start, end) { // функція яка вставляє го
         if (start === 0 ) {
             tr__title.insertAdjacentHTML("beforeend", `<td class="title_today">${resultTime}</td>`)
             tr__icon.insertAdjacentHTML("beforeend", `<td class="td_today"><img src='http://openweathermap.org/img/wn/${resultCity}@2x.png' alt="result" title="${description}"></td>`)
-            temp.insertAdjacentHTML("beforeend", `<td class="td_today">${resultTemp}°C</td>`)
-            feels__like.insertAdjacentHTML("beforeend", `<td class="feels__like_today">${resultTempFeels}°C</td>`)
+            temp.insertAdjacentHTML("beforeend", `<td class="td_today_first">${resultTemp}°C</td>`)
+            feels__like.insertAdjacentHTML("beforeend", `<td class="td_today">${resultTempFeels}°C</td>`)
             temp__min.insertAdjacentHTML("beforeend", `<td class="td_today">${resultTempMin}°C</td>`)
             temp__max.insertAdjacentHTML("beforeend", `<td class="td_today">${resultTempMax}°C</td>`)
             humidity.insertAdjacentHTML("beforeend", `<td class="humidity_today">${resultHumidity}%</td>`)

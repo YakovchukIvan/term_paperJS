@@ -307,7 +307,7 @@ td:last-child {
     background-color: #78ADD3 !important;
 }
 
-.feels__like_today,
+.td_today_first,
 .humidity_today,
 .pressure_today {
     background-color: #CFE2F0 !important;
